@@ -8,6 +8,7 @@ import { LeavestatusComponent } from './leavestatus/leavestatus.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 import { EmployeemainComponent } from './employeemain/employeemain.component';
 import { UpdatepasswordComponent } from './updatepassword/updatepassword.component';
+import { TempComponent } from './temp/temp.component';
 
 
 
@@ -21,6 +22,7 @@ import { UpdatepasswordComponent } from './updatepassword/updatepassword.compone
     UpdateprofileComponent,
     EmployeemainComponent,
     UpdatepasswordComponent,
+    TempComponent,
 
   ],
   imports: [

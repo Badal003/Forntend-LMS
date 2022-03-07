@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-updatepassword',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdatepasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+  }
+  onclickLeavestatus()
+  {
+      this.router.navigate(["/leavestatus"]);
+  }
+  onclickLeaveApply()
+  {
+      this.router.navigate(["/applyleave"]);
+  }
+  onclickEmployeeDashboard()
+  {
+      this.router.navigate(["/employee"]);
   }
 
 }

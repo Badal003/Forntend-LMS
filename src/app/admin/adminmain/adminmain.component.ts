@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adminmain',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminmainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
   isSideMenuActive=true
   ngOnInit(): void {
   }
@@ -71,389 +72,85 @@ export class AdminmainComponent implements OnInit {
     }
     this.isSideMenuActive = !this.isSideMenuActive;
   }
-  isDashborad:boolean=true
-  isAddDepartment:boolean=false
-  isManageDepartment:boolean=false
-  isAddDesignation:boolean=false
-  isManageDesignation:boolean=false
-  isAddEmployee:boolean=false
-  isManageEmployee:boolean=false
-  isAddLeaveType:boolean=false
-  isManageLeaveType:boolean=false
-  isAllLeave:boolean=false
-  isPendingLeave:boolean=false
-  isApproveLeave:boolean=false
-  isNotApproveLeave:boolean=false
-  isAddUser:boolean=false
-  isManageUser:boolean=false
-  isReport:boolean=false
-
+  
   //Open DashBoard form
   onOpenDeshBoard()
   { 
-    if(this.isDashborad==false)
-    {
-      this.isDashborad=true
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/admin"]);
   }
   //Open Add Department form
   onOpenAddDepatment()
   { 
-    if(this.isAddDepartment==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=true
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/adddepartment"]);
   }
   //Open Manage Department form
   onOpenManageDepatment()
   { 
-    if(this.isManageDepartment==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=true
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/managedepartment"]);
   }
   //Open Add Designation form
   onOpenAddDesignation()
   { 
-    if(this.isAddDesignation==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=true
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/adddesignation"]);
   }
   //Open Manage Designation form
   onOpenManageDesignation()
   { 
-    if(this.isManageDesignation==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=true
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/managedesignation"]);
   }
   //Open Add Employee form
   onOpenAddEmployee()
   { 
-    if(this.isAddEmployee==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=true
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/addemployee"]);
   }
   //Open Manage Employee form
   onOpenManageEmployee()
   { 
-    if(this.isManageEmployee==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=true
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/manageemployee"]);
   }
   //Open Add Leave Type form
   onOpenAddLeaveType()
   { 
-    if(this.isAddLeaveType==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=true
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/addleavetype"]);
   }
   //Open Manage Leave Type form
   onOpenManageLeaveType()
   { 
-    if(this.isManageLeaveType==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=true
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/manageleavetype"]);
   }
   //Open All Leave form
   onOpenAllLeave()
   { 
-    if(this.isAllLeave==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=true
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/allleave"]);
   }
   //Open Pending Leave form
   onOpenPendingLeave()
   { 
-    if(this.isPendingLeave==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=true
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/pendingleave"]);
   }
   //Open Approve Leave form
   onOpenApproveLeave()
   { 
-    if(this.isApproveLeave==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=true
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/approveleave"]);
   }
   //Open Not Approve Leave form
   onOpenNotApproveLeave()
   { 
-    if(this.isNotApproveLeave==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=true
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/notapproveleave"]);
   }
   //Open Add User form
   onOpenAddUser()
   { 
-    if(this.isAddUser==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=true
-      this.isManageUser=false
-      this.isReport=false
-    }
+    this.router.navigate(["/adduser"]);
   } 
   //Open Manage User form
   onOpenManageUser()
   { 
-    if(this.isManageUser==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=true
-      this.isReport=false
-    }
+    this.router.navigate(["/manageuser"]);
   }
   //Open Report form
   onOpenReport()
   { 
-    if(this.isReport==false)
-    {
-      this.isDashborad=false
-      this.isAddDepartment=false
-      this.isManageDepartment=false
-      this.isAddDesignation=false
-      this.isManageDesignation=false
-      this.isAddEmployee=false
-      this.isManageEmployee=false
-      this.isAddLeaveType=false
-      this.isManageLeaveType=false
-      this.isAllLeave=false
-      this.isPendingLeave=false
-      this.isApproveLeave=false
-      this.isNotApproveLeave=false
-      this.isAddUser=false
-      this.isManageUser=false
-      this.isReport=true
-    }
+    this.router.navigate(["/report"]);
   } 
 }

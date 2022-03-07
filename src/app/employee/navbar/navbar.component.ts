@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
   isSideBarActive = true;
   ngOnInit(): void {
   }
@@ -20,5 +21,18 @@ export class NavbarComponent implements OnInit {
       element.classList.add("active");
     }
     this.isSideBarActive = !this.isSideBarActive;
+  }
+
+  onclickUpdateProfile()
+  {
+    this.router.navigate(["/updateprofile"]);
+  }
+  onclickUpdatePassword()
+  {
+    this.router.navigate(["/updatepassword"]);
+  }
+  onclickLogOut()
+  {
+    this.router.navigate(["/login"]);
   }
 }
