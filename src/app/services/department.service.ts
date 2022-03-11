@@ -12,4 +12,8 @@ export class DepartmentService {
   public AddDepartmentFromRemote(department:Department):Observable<any>{
     return this.http.post("http://localhost:8090/adddepartment",department)
    }
+  
+  public DisplaysDepartments(department:Department):Observable<any>{
+    return this.http.post("http://localhost:8090/displayalldepartment",department);
+  }
 }

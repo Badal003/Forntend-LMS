@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Department } from 'src/app/class/department';
-import { DepartmentService } from 'src/app/services/department.service';
 
 @Component({
   selector: 'app-adddepartment',
@@ -10,22 +8,10 @@ import { DepartmentService } from 'src/app/services/department.service';
 })
 export class AdddepartmentComponent implements OnInit {
 
-  constructor(private router:Router,private departmentService:DepartmentService) { }
-  department=new Department()
+  constructor(private router:Router) { }
   isSideMenuActive=true
   ngOnInit(): void {
   }
-  onClickAddDepartment()
-  {
-    if(this.department.departmentShortName!=null && this.department.departmentFullName!=null)
-    {
-      this.departmentService.AddDepartmentFromRemote(this.department)
-    }
-  }
-
-
-
-
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");
@@ -167,4 +153,7 @@ export class AdddepartmentComponent implements OnInit {
   { 
     this.router.navigate(["/report"]);
   }
+
+
+  
 }
