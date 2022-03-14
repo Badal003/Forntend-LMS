@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Department } from 'src/app/class/department';
+import { DepartmentService } from 'src/app/services/department.service';
 
 @Component({
   selector: 'app-adddepartment',
@@ -8,10 +10,28 @@ import { Router } from '@angular/router';
 })
 export class AdddepartmentComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private departmentService:DepartmentService) { }
   isSideMenuActive=true
+  department=new Department()
   ngOnInit(): void {
   }
+  onClickSubmit()
+  {
+
+    console.log("click on submit")
+    console.log(this.department.departmentShortName)
+    this.departmentService.AddDepartmentFromRemote(this.department).subscribe(
+      data=>{
+        console.log("Data successfully inserted.")
+      },
+      error=>{
+        console.log("not successfully inserted.")
+      }
+    )
+
+  }
+
+
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");

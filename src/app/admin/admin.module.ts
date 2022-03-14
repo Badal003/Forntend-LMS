@@ -20,6 +20,8 @@ import { NotapproveleaveComponent } from './notapproveleave/notapproveleave.comp
 import { AdduserComponent } from './adduser/adduser.component';
 import { ManageuserComponent } from './manageuser/manageuser.component';
 import { LeavedetailsComponent } from './leavedetails/leavedetails.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UpdatedepartmentComponent } from './updatedepartment/updatedepartment.component';
 
 
 
@@ -43,11 +45,13 @@ import { LeavedetailsComponent } from './leavedetails/leavedetails.component';
     NotapproveleaveComponent,
     AdduserComponent,
     ManageuserComponent,
-    LeavedetailsComponent
+    LeavedetailsComponent,
+    UpdatedepartmentComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class AdminModule { }

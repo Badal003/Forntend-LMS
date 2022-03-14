@@ -17,6 +17,7 @@ import { ManageuserComponent } from './admin/manageuser/manageuser.component';
 import { NotapproveleaveComponent } from './admin/notapproveleave/notapproveleave.component';
 import { PendingleaveComponent } from './admin/pendingleave/pendingleave.component';
 import { ReportComponent } from './admin/report/report.component';
+import { UpdatedepartmentComponent } from './admin/updatedepartment/updatedepartment.component';
 import { ApplyleaveComponent } from './employee/applyleave/applyleave.component';
 import { DashboardComponent } from './employee/dashboard/dashboard.component';
 import { LeavestatusComponent } from './employee/leavestatus/leavestatus.component';
@@ -140,6 +141,11 @@ const routes: Routes = [
     path:'report',
     component:ReportComponent,
     pathMatch:'full',
+  },
+  {
+    path:'upadateDepartment',
+    component:UpdatedepartmentComponent,
+    pathMatch:'full'
   },
 ];
 

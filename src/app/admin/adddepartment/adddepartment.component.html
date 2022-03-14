@@ -142,15 +142,16 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form form-vertical">
+                                    <form class="form form-vertical" (ngSubmit)="onClickSubmit()">
                                         <div class="form-body">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group has-icon-left">
                                                         <label for="first-name-icon">Department Short Name</label>
                                                         <div class="position-relative">
-                                                            <input type="text" 
-                                                               
+                                                            <input type="text"
+                                                               name="departmentShortName" 
+                                                               [(ngModel)]="department.departmentShortName"
                                                                class="form-control" 
                                                                placeholder="Input Department" 
                                                                id="first-name-icon" 
@@ -166,7 +167,8 @@
                                                         <label for="email-id-icon">Department Name</label>
                                                         <div class="position-relative">
                                                             <input type="text"
-                                                              
+                                                               name="departmentFullName"
+                                                               [(ngModel)]="department.departmentFullName"
                                                                class="form-control" 
                                                                placeholder="Input Department Name" 
                                                                id="email-id-icon" 

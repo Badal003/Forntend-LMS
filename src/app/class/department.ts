@@ -4,4 +4,9 @@ export class Department {
     departmentFullName: string| undefined;
 
     constructor(){}
+
+    setId(id:number)
+    {
+        this.departmentId=id
+    }
 }

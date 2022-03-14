@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Department } from 'src/app/class/department';
+import { DepartmentService } from 'src/app/services/department.service';
 
 @Component({
   selector: 'app-managedepartment',
@@ -8,10 +10,30 @@ import { Router } from '@angular/router';
 })
 export class ManagedepartmentComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  department=new Department()
+  departments:any
+  constructor(private router:Router,private departmentService:DepartmentService) { }
   isSideMenuActive=true
   ngOnInit(): void {
+    localStorage.removeItem("departId");
+    this.departmentService.DisplaysDepartments(this.department).subscribe(
+      data=>{
+        [this.departments=data]
+      },
+      error=>{
+          console.log("data not fetch!!!!!!!!!!")
+      }
+    )
   }
+  onClickEdit(id:number)
+  {
+    localStorage.setItem("departId",id.toString());
+    //console.log("Department Id"+id)
+    this.router.navigate(['/upadateDepartment'])
+  }
+
+
+
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");
