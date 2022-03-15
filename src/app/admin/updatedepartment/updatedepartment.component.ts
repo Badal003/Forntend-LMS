@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Department } from 'src/app/class/department';
 import { DepartmentService } from 'src/app/services/department.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-updatedepartment',
@@ -22,21 +23,29 @@ export class UpdatedepartmentComponent implements OnInit {
         console.log(data.departmentId)
     ]},
     error=>{
-
+        console.log("Data Base connection Faild.")
     }
     )
   }
 
   onClickSubmit()
   {
-    console.log("click on submit")
     this.departmentService.UpdateDepartmentFromRemote(this.department).subscribe(
-      data=>{[
+      data=>{return [
+        [swal({
+          title: "Updated successfully",
+          text: "Department Updated successfully",
+          icon: "success",
+        })],
         console.log("Updated successfully.......")
-      ]},
-      error=>{
+      ];},
+      error=>{return[
+        [swal({
+          title:"Not Updated!",
+          text:"Department not Updated",
+          icon:"error"})],
         console.log("not Updated!!!!!!!!")
-      }
+      ];}
     )
   }
 

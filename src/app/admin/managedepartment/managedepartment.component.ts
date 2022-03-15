@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { Department } from 'src/app/class/department';
 import { DepartmentService } from 'src/app/services/department.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-managedepartment',
@@ -9,7 +10,7 @@ import { DepartmentService } from 'src/app/services/department.service';
   styleUrls: ['./managedepartment.component.css']
 })
 export class ManagedepartmentComponent implements OnInit {
-
+  buttons : boolean =  true;
   department=new Department()
   departments:any
   constructor(private router:Router,private departmentService:DepartmentService) { }
@@ -32,7 +33,43 @@ export class ManagedepartmentComponent implements OnInit {
     this.router.navigate(['/upadateDepartment'])
   }
 
-
+  onClickDelete(id:number)
+  {
+    localStorage.setItem("departId",id.toString());
+    console.log("Department Id"+id)
+    //this.router.navigate(['/upadateDepartment'])
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this Departmant!",
+      icon: "warning",
+      buttons:{cancel:true,ok:true},
+      dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.department.setId(id)
+        this.departmentService.DeleteDepartmentFromRemote(this.department).subscribe(
+          data=>{[
+            swal("Department deleted successfully!", {
+              icon: "success",
+            }),window.location.reload()]
+          },
+          error=>{
+            {return[
+              [swal({
+                title:"Not Deleted!",
+                text:"Department not Deleted",
+                icon:"error"})],
+              console.log("not Deleted!!!!!!!!")
+            ];}
+          }  
+        )
+        
+      } else {
+        swal("Your are not Delete Department!");
+      }
+    });
+  }
 
   //Department Menu show and hide
   onSidemenuClickDepartment(){

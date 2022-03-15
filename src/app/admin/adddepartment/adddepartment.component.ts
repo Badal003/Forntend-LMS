@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Department } from 'src/app/class/department';
 import { DepartmentService } from 'src/app/services/department.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-adddepartment',
@@ -21,12 +22,21 @@ export class AdddepartmentComponent implements OnInit {
     console.log("click on submit")
     console.log(this.department.departmentShortName)
     this.departmentService.AddDepartmentFromRemote(this.department).subscribe(
-      data=>{
-        console.log("Data successfully inserted.")
-      },
-      error=>{
-        console.log("not successfully inserted.")
-      }
+      data=>{return [
+        [swal({
+          title: "Inserted successfully",
+          text: "Department Inserted Successfully",
+          icon: "success",
+        }),window.location.reload()],
+        console.log("Inserted successfully.......")
+      ];},
+      error=>{return[
+        [swal({
+          title:"Not Inserted!",
+          text:"Department not Inserted",
+          icon:"error"})],
+        console.log("not Inserted!!!!!!!!")
+      ];}
     )
 
   }
