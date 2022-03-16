@@ -26,6 +26,7 @@ export class AdddepartmentComponent implements OnInit {
         [swal({
           title: "Inserted successfully",
           text: "Department Inserted Successfully",
+          buttons:{ok:true},
           icon: "success",
         }),window.location.reload()],
         console.log("Inserted successfully.......")

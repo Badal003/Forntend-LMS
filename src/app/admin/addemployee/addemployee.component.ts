@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Department } from 'src/app/class/department';
+import { Designation } from 'src/app/class/designation';
+import { Employee } from 'src/app/class/employee';
+import { Userrole } from 'src/app/class/userrole';
+import { DepartmentService } from 'src/app/services/department.service';
+import { DesignationService } from 'src/app/services/designation.service';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { UserRoleService } from 'src/app/services/user-role.service';
+import swal from 'sweetalert';
 @Component({
   selector: 'app-addemployee',
   templateUrl: './addemployee.component.html',
@@ -8,9 +16,93 @@ import { Router } from '@angular/router';
 })
 export class AddemployeeComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  department=new Department()
+  designation=new Designation()
+  userrole=new Userrole()
+  employee=new Employee()
+  departments:any
+  designations:any
+  depart_id:any
+  design_id:any
+  constructor(private router:Router,
+    private departmentService:DepartmentService,
+    private designationService:DesignationService,
+    private userroleService:UserRoleService,
+    private employeeService:EmployeeService)
+  {
+
+   }
+
+
+
+
   isSideMenuActive=true
   ngOnInit(): void {
+    this.designationService.DisplaysDesignations(this.designation).subscribe
+    (
+      data=>{
+        this.designations=data
+      }
+    )
+    this.departmentService.DisplaysDepartments(this.department).subscribe(
+      data=>{
+        this.departments=data
+      }
+    )
+    
+  }
+
+  onclickSubmit()
+  {
+    console.log(this.department.departmentId)
+    console.log(this.designation.designationId)
+    
+    this.department.setId(this.depart_id)
+    this.departmentService.FindDepartmentFromRemote(this.department).subscribe
+    (
+      data=>{
+        console.log(data)
+        this.employee.setDepartment(data)
+      }
+    )
+    this.designation.setId(this.design_id)
+    
+    this.designationService.FindDesignationFromRemote(this.designation).subscribe
+    (
+      data=>{
+        console.log(data)
+        this.employee.setDesignation(data)
+      }
+    )
+    this.userrole.setId(2)
+    this.userroleService.FindUserroleFromRemote(this.userrole).subscribe
+    (
+      data=>{
+        console.log(data)
+        this.employee.setUserRole(data)
+      }
+    )
+    this.employeeService.AddEmployeeFromRemote(this.employee).subscribe(
+      data=>{return [
+        [swal({
+          title: "Inserted successfully",
+          text: "Employee Inserted Successfully",
+          buttons:{ok:true},
+          icon: "success",
+        })],
+        console.log("Inserted successfully.......")
+      ];},
+      error=>{return[
+        [swal({
+          title:"Not Inserted!",
+          text:"Employee not Inserted",
+          icon:"error"})],
+        console.log("not Inserted!!!!!!!!")
+      ];}
+    )
+    console.log(this.employee.department)
+    console.log(this.employee.designation)
+    console.log(this.employee.userRole)  
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){
