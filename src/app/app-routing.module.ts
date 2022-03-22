@@ -18,6 +18,8 @@ import { NotapproveleaveComponent } from './admin/notapproveleave/notapproveleav
 import { PendingleaveComponent } from './admin/pendingleave/pendingleave.component';
 import { ReportComponent } from './admin/report/report.component';
 import { UpdatedepartmentComponent } from './admin/updatedepartment/updatedepartment.component';
+import { UpdatedesignationComponent } from './admin/updatedesignation/updatedesignation.component';
+import { UpdateemployeeComponent } from './admin/updateemployee/updateemployee.component';
 import { ApplyleaveComponent } from './employee/applyleave/applyleave.component';
 import { DashboardComponent } from './employee/dashboard/dashboard.component';
 import { LeavestatusComponent } from './employee/leavestatus/leavestatus.component';
@@ -145,6 +147,16 @@ const routes: Routes = [
   {
     path:'upadateDepartment',
     component:UpdatedepartmentComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'upadateDesignation',
+    component:UpdatedesignationComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'upadateEmployee',
+    component:UpdateemployeeComponent,
     pathMatch:'full'
   },
 ];

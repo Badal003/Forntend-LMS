@@ -22,6 +22,8 @@ import { ManageuserComponent } from './manageuser/manageuser.component';
 import { LeavedetailsComponent } from './leavedetails/leavedetails.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UpdatedepartmentComponent } from './updatedepartment/updatedepartment.component';
+import { UpdatedesignationComponent } from './updatedesignation/updatedesignation.component';
+import { UpdateemployeeComponent } from './updateemployee/updateemployee.component';
 
 
 
@@ -46,7 +48,9 @@ import { UpdatedepartmentComponent } from './updatedepartment/updatedepartment.c
     AdduserComponent,
     ManageuserComponent,
     LeavedetailsComponent,
-    UpdatedepartmentComponent
+    UpdatedepartmentComponent,
+    UpdatedesignationComponent,
+    UpdateemployeeComponent
   ],
   imports: [
     CommonModule,

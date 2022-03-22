@@ -5,75 +5,48 @@ import { DesignationService } from 'src/app/services/designation.service';
 import swal from 'sweetalert';
 
 @Component({
-  selector: 'app-managedesignation',
-  templateUrl: './managedesignation.component.html',
-  styleUrls: ['./managedesignation.component.css']
+  selector: 'app-updatedesignation',
+  templateUrl: './updatedesignation.component.html',
+  styleUrls: ['./updatedesignation.component.css']
 })
-export class ManagedesignationComponent implements OnInit {
+export class UpdatedesignationComponent implements OnInit {
 
-  
-  constructor(private router:Router,private designationService:DesignationService) {   
-  }
+  constructor(private router:Router,private designationService:DesignationService) { }
   isSideMenuActive=true
   designation=new Designation()
-  designations:any
   ngOnInit(): void {
-    localStorage.removeItem("designId");
-    this.designationService.DisplaysDesignations(this.designation).subscribe(
-      data=>{
-        [this.designations=data
-        ,console.log(data)]
-      },
-      error=>{
-          console.log("data not fetch!!!!!!!!!!")
-      }
+    this.designation.setId(Number(localStorage.getItem("designId")))
+    this.designationService.FindDesignationFromRemote(this.designation).subscribe(
+    data=>{[
+        this.designation=data,
+        console.log(data.departmentId)
+    ]},
+    error=>{
+        console.log("Data Base connection Faild.")
+    }
     )
   }
-  onClickEdit(id:number)
-  {
-    localStorage.setItem("designId",id.toString());
-    //console.log("Department Id"+id)
-    this.router.navigate(['/upadateDesignation'])
-  }
 
-  onClickDelete(id:number)
+  onClickSubmit()
   {
-    localStorage.setItem("designId",id.toString());
-    console.log("Designation Id"+id)
-    //this.router.navigate(['/upadateDepartment'])
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this Designation!",
-      icon: "warning",
-      buttons:{cancel:true,ok:true},
-      dangerMode: true,
-  })
-    .then((willDelete) => {
-      if (willDelete) {
-        this.designation.setId(id)
-        this.designationService.DeleteDesignationFromRemote(this.designation).subscribe(
-          data=>{[
-            swal("Designation deleted successfully!", {
-              icon: "success",
-            }),window.location.reload()]
-          },
-          error=>{
-            {return[
-              [swal({
-                title:"Not Deleted!",
-                text:"Designation not Deleted",
-                icon:"error"})],
-              console.log("not Deleted!!!!!!!!")
-            ];}
-          }  
-        )
-        
-      } else {
-        swal("Your are not Delete Designation!");
-      }
-    });
+    this.designationService.UpdateDesignationFromRemote(this.designation).subscribe(
+      data=>{return [
+        [swal({
+          title: "Updated successfully",
+          text: "Desigantion Updated successfully",
+          icon: "success",
+        })],
+        console.log("Updated successfully.......")
+      ];},
+      error=>{return[
+        [swal({
+          title:"Not Updated!",
+          text:"Designation not Updated",
+          icon:"error"})],
+        console.log("not Updated!!!!!!!!")
+      ];}
+    )
   }
-
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");
@@ -215,5 +188,4 @@ export class ManagedesignationComponent implements OnInit {
   { 
     this.router.navigate(["/report"]);
   }
-
 }

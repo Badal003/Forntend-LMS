@@ -1,81 +1,79 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Department } from 'src/app/class/department';
 import { Designation } from 'src/app/class/designation';
+import { Employee } from 'src/app/class/employee';
+import { Employeemodule } from 'src/app/class/employeemodule';
+import { DepartmentService } from 'src/app/services/department.service';
 import { DesignationService } from 'src/app/services/designation.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 import swal from 'sweetalert';
-
 @Component({
-  selector: 'app-managedesignation',
-  templateUrl: './managedesignation.component.html',
-  styleUrls: ['./managedesignation.component.css']
+  selector: 'app-updateemployee',
+  templateUrl: './updateemployee.component.html',
+  styleUrls: ['./updateemployee.component.css']
 })
-export class ManagedesignationComponent implements OnInit {
+export class UpdateemployeeComponent implements OnInit {
 
-  
-  constructor(private router:Router,private designationService:DesignationService) {   
-  }
-  isSideMenuActive=true
+  constructor(private router:Router,private departmentService:DepartmentService,
+    private designationService:DesignationService,private employeeService:EmployeeService) { }
+  employeemodule=new Employeemodule()
+  department=new Department()
   designation=new Designation()
+  isSideMenuActive=true
+  departments:any
   designations:any
+  depart_id:any
+  design_id:any
   ngOnInit(): void {
-    localStorage.removeItem("designId");
-    this.designationService.DisplaysDesignations(this.designation).subscribe(
+    this.designationService.DisplaysDesignations(this.designation).subscribe
+    (
       data=>{
-        [this.designations=data
-        ,console.log(data)]
-      },
-      error=>{
-          console.log("data not fetch!!!!!!!!!!")
+        this.designations=data
       }
     )
-  }
-  onClickEdit(id:number)
-  {
-    localStorage.setItem("designId",id.toString());
-    //console.log("Department Id"+id)
-    this.router.navigate(['/upadateDesignation'])
-  }
-
-  onClickDelete(id:number)
-  {
-    localStorage.setItem("designId",id.toString());
-    console.log("Designation Id"+id)
-    //this.router.navigate(['/upadateDepartment'])
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this Designation!",
-      icon: "warning",
-      buttons:{cancel:true,ok:true},
-      dangerMode: true,
-  })
-    .then((willDelete) => {
-      if (willDelete) {
-        this.designation.setId(id)
-        this.designationService.DeleteDesignationFromRemote(this.designation).subscribe(
-          data=>{[
-            swal("Designation deleted successfully!", {
-              icon: "success",
-            }),window.location.reload()]
-          },
-          error=>{
-            {return[
-              [swal({
-                title:"Not Deleted!",
-                text:"Designation not Deleted",
-                icon:"error"})],
-              console.log("not Deleted!!!!!!!!")
-            ];}
-          }  
-        )
-        
-      } else {
-        swal("Your are not Delete Designation!");
+    this.departmentService.DisplaysDepartments(this.department).subscribe(
+      data=>{
+        this.departments=data
       }
-    });
+    )
+    console.log(localStorage.getItem("empId"))
+    this.employeemodule.setId(Number(localStorage.getItem("empId")))
+    console.log(this.employeemodule.id)
+    this.employeeService.FindEmployeeFromRemote(this.employeemodule).subscribe(
+    data=>{[
+        console.log(data),
+        this.employeemodule=data,
+    ]},
+    error=>{
+        console.log("Data Base connection Faild.")
+    }
+    )
   }
 
-  //Department Menu show and hide
-  onSidemenuClickDepartment(){
+  onclickSubmit()
+  {
+    this.employeeService.UpdateEmployeeFromRemote(this.employeemodule).subscribe(
+      data=>{return [
+        [swal({
+          title: "Updated successfully",
+          text: "Employee Updated successfully",
+          icon: "success",
+        })],
+        console.log("Updated successfully.......")
+      ,window.location.reload()]},
+      error=>{return[
+        [swal({
+          title:"Not Updated!",
+          text:"Employee not Updated",
+          icon:"error"})],
+        console.log("not Updated!!!!!!!!")
+      ];}
+    )
+
+  }
+   //Department Menu show and hide
+   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");
     if(this.isSideMenuActive) {
       element.className+=" active"; 

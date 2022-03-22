@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Department } from 'src/app/class/department';
 import { Designation } from 'src/app/class/designation';
 import { Employee } from 'src/app/class/employee';
+import { Employeemodule } from 'src/app/class/employeemodule';
 import { Userrole } from 'src/app/class/userrole';
 import { DepartmentService } from 'src/app/services/department.service';
 import { DesignationService } from 'src/app/services/designation.service';
@@ -19,7 +20,8 @@ export class AddemployeeComponent implements OnInit {
   department=new Department()
   designation=new Designation()
   userrole=new Userrole()
-  employee=new Employee()
+  
+  employeemodule=new Employeemodule()
   departments:any
   designations:any
   depart_id:any
@@ -27,14 +29,10 @@ export class AddemployeeComponent implements OnInit {
   constructor(private router:Router,
     private departmentService:DepartmentService,
     private designationService:DesignationService,
-    private userroleService:UserRoleService,
     private employeeService:EmployeeService)
   {
 
    }
-
-
-
 
   isSideMenuActive=true
   ngOnInit(): void {
@@ -54,55 +52,26 @@ export class AddemployeeComponent implements OnInit {
 
   onclickSubmit()
   {
-    console.log(this.department.departmentId)
-    console.log(this.designation.designationId)
-    
-    this.department.setId(this.depart_id)
-    this.departmentService.FindDepartmentFromRemote(this.department).subscribe
-    (
-      data=>{
-        console.log(data)
-        this.employee.setDepartment(data)
-      }
-    )
-    this.designation.setId(this.design_id)
-    
-    this.designationService.FindDesignationFromRemote(this.designation).subscribe
-    (
-      data=>{
-        console.log(data)
-        this.employee.setDesignation(data)
-      }
-    )
-    this.userrole.setId(2)
-    this.userroleService.FindUserroleFromRemote(this.userrole).subscribe
-    (
-      data=>{
-        console.log(data)
-        this.employee.setUserRole(data)
-      }
-    )
-    this.employeeService.AddEmployeeFromRemote(this.employee).subscribe(
-      data=>{return [
-        [swal({
-          title: "Inserted successfully",
-          text: "Employee Inserted Successfully",
-          buttons:{ok:true},
-          icon: "success",
-        })],
-        console.log("Inserted successfully.......")
-      ];},
-      error=>{return[
-        [swal({
-          title:"Not Inserted!",
-          text:"Employee not Inserted",
-          icon:"error"})],
-        console.log("not Inserted!!!!!!!!")
-      ];}
-    )
-    console.log(this.employee.department)
-    console.log(this.employee.designation)
-    console.log(this.employee.userRole)  
+   
+    console.log("Employeee====>",this.employeemodule);
+      this.employeeService.AddEmployeeFromRemote(this.employeemodule).subscribe(
+        data=>{return [
+          [swal({
+            title: "Inserted successfully",
+            text: "Employee Inserted Successfully",
+            buttons:{ok:true},
+            icon: "success",
+          })],
+          console.log("Inserted successfully.......")
+        ];},
+        error=>{return[
+          [swal({
+            title:"Not Inserted!",
+            text:"Employee not Inserted",
+            icon:"error"})],
+          console.log("not Inserted!!!!!!!!")
+        ];}
+      )  
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){

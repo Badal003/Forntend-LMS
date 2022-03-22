@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Department } from 'src/app/class/department';
+import { Designation } from 'src/app/class/designation';
+import { Employeemodule } from 'src/app/class/employeemodule';
+import { Userrole } from 'src/app/class/userrole';
+import { DepartmentService } from 'src/app/services/department.service';
+import { DesignationService } from 'src/app/services/designation.service';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { UserRoleService } from 'src/app/services/user-role.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-adduser',
@@ -7,11 +16,73 @@ import { Router } from '@angular/router';
   styleUrls: ['./adduser.component.css']
 })
 export class AdduserComponent implements OnInit {
+  department=new Department()
+  designation=new Designation()
+  userrole=new Userrole()
+  
+  employeemodule=new Employeemodule()
+  departments:any
+  userroles: any
+  employees:any
 
-  constructor(private router:Router) { }
+  
+  constructor(private router:Router,
+    private departmentService:DepartmentService,
+    private employeeService:EmployeeService,private userRoleService:UserRoleService)
+  {
+
+   }  
   isSideMenuActive=true
   ngOnInit(): void {
+    this.departmentService.DisplaysDepartments(this.department).subscribe(
+      data=>{
+        this.departments=data
+      }
+    )
+    this.userRoleService.DisplaysUserroles(this.userrole).subscribe(
+      data=>{
+        this.userroles=data
+      }
+    )
   }
+  onChange(event:number| undefined)
+  {
+    this.employeeService.findEmployeeByDepartmentFromRemote(this.employeemodule).subscribe(
+      data=>{
+        this.employees=data
+      }
+    )
+    console.log(event);
+  }
+
+
+  onclickSubmit()
+  {
+    console.log(this.employeemodule)
+    this.employeeService.UpdateEmployeeUserroleFromRemote(this.employeemodule).subscribe(
+      data=>{return [
+        [swal({
+          title: "Allocated successfully",
+          text: "Employee role Allocated successfully",
+          icon: "success",
+        })],
+        console.log("Allocated successfully.......")
+      ,window.location.reload()]},
+      error=>{return[
+        [swal({
+          title:"Not Allocated!",
+          text:"Employee role not Allocated",
+          icon:"error"})],
+        console.log("not Allocated!!!!!!!!")
+      ];}
+    )
+  }
+
+
+
+
+
+
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");

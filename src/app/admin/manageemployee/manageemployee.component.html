@@ -143,20 +143,17 @@
                                 <table class="table dataTable-table" id="table1">
                                     <thead>
                                         <tr>
-                                            <th data-sortable="" style="width: 14.1192%;">
-                                                <a href="#" class="dataTable-sorter">Emp ID</a>
-                                            </th>
                                             <th data-sortable="" style="width: 19.0724%;">
                                                 <a href="#" class="dataTable-sorter">Full Name</a>
                                             </th>
                                             <th data-sortable="" style="width: 20.1541%;">
-                                                <a href="#" class="dataTable-sorter">Department</a>
+                                                <a href="#" class="dataTable-sorter">Date Of Birth</a>
                                             </th>
                                             <th data-sortable="" style="width: 17.3075%;">
-                                                <a href="#" class="dataTable-sorter">Status</a>
+                                                <a href="#" class="dataTable-sorter">Email </a>
                                             </th>
                                             <th data-sortable="" style="width: 16.2827%;">
-                                                <a href="#" class="dataTable-sorter">Reg Date</a>
+                                                <a href="#" class="dataTable-sorter">Date of Join</a>
                                             </th>
                                             <th data-sortable="" style="width: 13.0375%;">
                                                 <a href="#" class="dataTable-sorter">Action</a>
@@ -164,63 +161,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>123456</td>
-                                            <td>John Doe</td>
-                                            <td>IT</td>
+                                        <tr *ngFor="let employee Of employees">
+                                            <td>{{employee.firstName+" "+employee.lastName}}</td>
+                                            <td>{{employee.dateOfBirth}}</td>
+                                            <td>{{employee.emailId}}</td>
+                                            <td>{{employee.dateOfJoin}}</td>
                                             <td>
-                                                <span class="badge bg-success">Active</span>
-                                            </td>
-                                            <td>2021-11-01</td>
-                                            <td>
-                                                <a href="editDesignation.php">
+                                                <a (click)="onClickEdit(employee.employeeId)">
                                                     <svg class="svg-inline--fa fa-pen fa-w-16 text-success" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
                                                         <path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path>
                                                     </svg><!-- <i class="fa fa-pen text-success"></i> -->
-                                                </a>   
-                                                <a href="editDesignation.php">
-                                                    <svg class="svg-inline--fa fa-trash fa-w-14 text-danger" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                                        <path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>
-                                                    </svg><!-- <i class="fa fa-trash text-danger"></i> -->
                                                 </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>153424</td>
-                                            <td>Jane Doe</td>
-                                            <td>HR</td>
-                                            <td>
-                                                <span class="badge bg-danger">Deactivated</span>
-                                            </td>
-                                            <td>2021-11-01</td>
-                                            <td>
-                                                <a href="editDesignation.php">
-                                                    <svg class="svg-inline--fa fa-pen fa-w-16 text-success" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                                        <path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path>
-                                                    </svg><!-- <i class="fa fa-pen text-success"></i> -->
-                                                </a>   
-                                                <a href="editDesignation.php">
-                                                    <svg class="svg-inline--fa fa-trash fa-w-14 text-danger" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                                        <path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>
-                                                    </svg><!-- <i class="fa fa-trash text-danger"></i> -->
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>564355</td>
-                                            <td>Juan Dela Cruz</td>
-                                            <td>ENGINEERING</td>
-                                            <td>
-                                                <span class="badge bg-success">Active</span>
-                                            </td>
-                                            <td>2021-11-01</td>
-                                            <td>
-                                                <a href="editDesignation.php">
-                                                    <svg class="svg-inline--fa fa-pen fa-w-16 text-success" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                                        <path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path>
-                                                    </svg><!-- <i class="fa fa-pen text-success"></i> -->
-                                                </a>   
-                                                <a href="editDesignation.php">
+                                                &nbsp;&nbsp;   
+                                                <a (click)="onClickDelete(employee.employeeId)">
                                                     <svg class="svg-inline--fa fa-trash fa-w-14 text-danger" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
                                                         <path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>
                                                     </svg><!-- <i class="fa fa-trash text-danger"></i> -->

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Employee } from 'src/app/class/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
+import swal from 'sweetalert';
 @Component({
   selector: 'app-manageemployee',
   templateUrl: './manageemployee.component.html',
@@ -8,10 +10,68 @@ import { Router } from '@angular/router';
 })
 export class ManageemployeeComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private employeeService:EmployeeService) { }
   isSideMenuActive=true
+  employee =new Employee()
+  employees:any
   ngOnInit(): void {
+    localStorage.removeItem("empId");
+    this.employeeService.DisplaysEmployees(this.employee).subscribe(
+      data=>{
+        [this.employees=data
+        ,console.log(data)]
+      },
+      error=>{
+          console.log("data not fetch!!!!!!!!!!")
+      }
+    )
   }
+  onClickEdit(id:number)
+  {
+    localStorage.setItem("empId",id.toString());
+    //console.log("Department Id"+id)
+    this.router.navigate(['/upadateEmployee'])
+  }
+
+  onClickDelete(id:number)
+  {
+    localStorage.setItem("empId",id.toString());
+    console.log("Designation Id"+id)
+    //this.router.navigate(['/upadateDepartment'])
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this employee!",
+      icon: "warning",
+      buttons:{cancel:true,ok:true},
+      dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.employee.setId(id)
+        this.employeeService.DeleteEmployeeFromRemote(this.employee).subscribe(
+          data=>{[
+            swal("Employee deleted successfully!", {
+              icon: "success",
+            }),window.location.reload()]
+          },
+          error=>{
+            {return[
+              [swal({
+                title:"Not Deleted!",
+                text:"Employee not Deleted",
+                icon:"error"})],
+              console.log("not Deleted!!!!!!!!")
+            ];}
+          }  
+        )
+        
+      } else {
+        swal("Your are not Delete Employee!");
+      }
+    });
+  }
+
+
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");

@@ -142,31 +142,25 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form">
+                                    <form class="form" (ngSubmit)=" onclickSubmit()">
                                         <div class="row">
+                                          <div class="col-md-6 col-12">
+                                             <div class="form-group">
+                                                <label for="country-floating">Department</label>
+                                                <fieldset class="form-group">
+                                                   <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.departmentId" [ngModelOptions]="{standalone: true}" (change)="onChange(employeemodule.departmentId)" >
+                                                      <option [value]="department.departmentId" *ngFor="let department of departments">{{department.departmentShortName}}</option>
+                                                   </select>
+                                                </fieldset>
+                                             </div>
+                                         </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="country-floating">Employee</label>
                                                     <fieldset class="form-group">
-                                                        <select class="form-select" id="basicSelect">
-                                                            <option>IT</option>
-                                                            <option>ENGINEERING</option>
-                                                            <option>HR</option>
-                                                            <option>FINANCE</option>
-                                                        </select>
-                                                    </fieldset>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="country-floating">Department</label>
-                                                    <fieldset class="form-group">
-                                                        <select class="form-select" id="basicSelect">
-                                                            <option>IT</option>
-                                                            <option>ENGINEERING</option>
-                                                            <option>HR</option>
-                                                            <option>FINANCE</option>
-                                                        </select>
+                                                      <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.id" [ngModelOptions]="{standalone: true}" (change)="onChange(employeemodule.departmentId)" >
+                                                         <option [value]="employee.employeeId" *ngFor="let employee of employees">{{employee.firstName+" "+employee.lastName}}</option>
+                                                      </select>
                                                     </fieldset>
                                                 </div>
                                             </div>
@@ -175,10 +169,9 @@
                                                     <label for="first-name-icon">User Category</label>
                                                     <div class="position-relative">
                                                         <fieldset class="form-group">
-                                                            <select class="form-select" id="basicSelect">
-                                                                <option>Admin</option>
-                                                                <option>Staff</option>
-                                                            </select>
+                                                         <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.userroleId" [ngModelOptions]="{standalone: true}">
+                                                            <option [ngValue]="userrole.userroleId" *ngFor="let userrole of userroles">{{userrole.userroleName}}</option>
+                                                         </select>
                                                         </fieldset>
                                                     </div>
                                                 </div>

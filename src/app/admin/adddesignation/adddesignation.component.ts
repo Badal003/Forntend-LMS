@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Designation } from 'src/app/class/designation';
+import { DesignationService } from 'src/app/services/designation.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-adddesignation',
@@ -8,9 +11,33 @@ import { Router } from '@angular/router';
 })
 export class AdddesignationComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private designationService:DesignationService) { }
   isSideMenuActive=true
+  designation=new Designation()
   ngOnInit(): void {
+  }
+
+  onClickSubmit()
+  {
+    console.log("click on submit")
+    this.designationService.AddDesignationFromRemote(this.designation).subscribe(
+      data=>{return [
+        [swal({
+          title: "Inserted successfully",
+          text: "Department Inserted Successfully",
+          buttons:{ok:true},
+          icon: "success",
+        }),window.location.reload()],
+        console.log("Inserted successfully.......")
+      ];},
+      error=>{return[
+        [swal({
+          title:"Not Inserted!",
+          text:"Department not Inserted",
+          icon:"error"})],
+        console.log("not Inserted!!!!!!!!")
+      ];}
+    )
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){

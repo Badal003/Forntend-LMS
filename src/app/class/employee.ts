@@ -3,7 +3,7 @@ import { Designation } from "./designation";
 import { Userrole } from "./userrole";
 
 export class Employee {
-    empId: number| undefined;
+    employeeId: number| undefined;
     firstName: string| undefined;
     middleName: string| undefined;
     lastName:string| undefined;
@@ -20,7 +20,7 @@ export class Employee {
     constructor(){}
     setId(id:number)
     {
-        this.empId=id
+        this.employeeId=id
     }
     setDepartment(department:Department)
     {
