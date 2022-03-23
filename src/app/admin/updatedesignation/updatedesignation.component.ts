@@ -37,6 +37,7 @@ export class UpdatedesignationComponent implements OnInit {
           icon: "success",
         })],
         console.log("Updated successfully.......")
+        ,window.location.reload()
       ];},
       error=>{return[
         [swal({

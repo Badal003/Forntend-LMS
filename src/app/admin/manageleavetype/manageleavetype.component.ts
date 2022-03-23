@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Leavetype } from 'src/app/class/leavetype';
+import { LeaveService } from 'src/app/services/leave.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-manageleavetype',
@@ -8,10 +11,68 @@ import { Router } from '@angular/router';
 })
 export class ManageleavetypeComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private leaveService:LeaveService) { }
   isSideMenuActive=true
+  leavetype=new Leavetype()
+  leavetypes:any
   ngOnInit(): void {
+    localStorage.removeItem("leavetypeId");
+    this.leaveService.DisplaysLeavetypes(this.leavetype).subscribe(
+      data=>{
+        [this.leavetypes=data]
+      },
+      error=>{
+          console.log("data not fetch!!!!!!!!!!")
+      }
+    )
   }
+  onClickEdit(id:Number)
+  {
+    localStorage.setItem("leavetypeId",id.toString());
+    //console.log("Department Id"+id)
+    this.router.navigate(['/upadateLeaveType'])
+  }
+  onClickDelete(id:number)
+  {
+    localStorage.setItem("leavetypeId",id.toString());
+    console.log("Leave-type Id"+id)
+    //this.router.navigate(['/upadateDepartment'])
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this Leave-Type!",
+      icon: "warning",
+      buttons:{cancel:true,ok:true},
+      dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        this.leavetype.setId(id)
+        this.leaveService.DeleteLeavetypeFromRemote(this.leavetype).subscribe(
+          data=>{[
+            swal("Leave-Type deleted successfully!", {
+              icon: "success",
+            }),window.location.reload()]
+          },
+          error=>{
+            {return[
+              [swal({
+                title:"Not Deleted!",
+                text:"Leave-Type not Deleted",
+                icon:"error"})],
+              console.log("not Deleted!!!!!!!!")
+            ];}
+          }  
+        )
+        
+      } else {
+        swal("Your are not Delete Leave-Type!");
+      }
+    });
+  }
+
+
+
+
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");

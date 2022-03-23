@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdatedepartmentComponent } from './updatedepartment/updatedepartment.component';
 import { UpdatedesignationComponent } from './updatedesignation/updatedesignation.component';
 import { UpdateemployeeComponent } from './updateemployee/updateemployee.component';
+import { UpdateleavetypeComponent } from './updateleavetype/updateleavetype.component';
 
 
 
@@ -50,7 +51,8 @@ import { UpdateemployeeComponent } from './updateemployee/updateemployee.compone
     LeavedetailsComponent,
     UpdatedepartmentComponent,
     UpdatedesignationComponent,
-    UpdateemployeeComponent
+    UpdateemployeeComponent,
+    UpdateleavetypeComponent
   ],
   imports: [
     CommonModule,

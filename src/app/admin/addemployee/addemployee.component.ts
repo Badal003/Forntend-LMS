@@ -63,7 +63,7 @@ export class AddemployeeComponent implements OnInit {
             icon: "success",
           })],
           console.log("Inserted successfully.......")
-        ];},
+        ,window.location.reload()]},
         error=>{return[
           [swal({
             title:"Not Inserted!",

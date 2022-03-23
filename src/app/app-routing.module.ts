@@ -20,6 +20,7 @@ import { ReportComponent } from './admin/report/report.component';
 import { UpdatedepartmentComponent } from './admin/updatedepartment/updatedepartment.component';
 import { UpdatedesignationComponent } from './admin/updatedesignation/updatedesignation.component';
 import { UpdateemployeeComponent } from './admin/updateemployee/updateemployee.component';
+import { UpdateleavetypeComponent } from './admin/updateleavetype/updateleavetype.component';
 import { ApplyleaveComponent } from './employee/applyleave/applyleave.component';
 import { DashboardComponent } from './employee/dashboard/dashboard.component';
 import { LeavestatusComponent } from './employee/leavestatus/leavestatus.component';
@@ -157,6 +158,11 @@ const routes: Routes = [
   {
     path:'upadateEmployee',
     component:UpdateemployeeComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'upadateLeaveType',
+    component:UpdateleavetypeComponent,
     pathMatch:'full'
   },
 ];

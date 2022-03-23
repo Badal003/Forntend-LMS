@@ -1,56 +1,57 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Department } from 'src/app/class/department';
-import { DepartmentService } from 'src/app/services/department.service';
+import { Leavetype } from 'src/app/class/leavetype';
+import { LeaveService } from 'src/app/services/leave.service';
 import swal from 'sweetalert';
 
 @Component({
-  selector: 'app-updatedepartment',
-  templateUrl: './updatedepartment.component.html',
-  styleUrls: ['./updatedepartment.component.css']
+  selector: 'app-updateleavetype',
+  templateUrl: './updateleavetype.component.html',
+  styleUrls: ['./updateleavetype.component.css']
 })
-export class UpdatedepartmentComponent implements OnInit {
+export class UpdateleavetypeComponent implements OnInit {
 
-  constructor(private router:Router,private departmentService:DepartmentService) { }
-  
+  constructor(private router:Router,private leaveService:LeaveService) { }
   isSideMenuActive=true
-  department=new Department()
+  leavetype=new Leavetype()
   ngOnInit(): void {
-    this.department.setId(Number(localStorage.getItem("departId")))
-    this.departmentService.FindDepartmentFromRemote(this.department).subscribe(
+    this.leavetype.setId(Number(localStorage.getItem("leavetypeId")))
+    this.leaveService.FindLeavetypeFromRemote(this.leavetype).subscribe(
     data=>{[
-        this.department=data,
-        console.log(data.departmentId)
+        this.leavetype=data,
+        console.log(data.leavetypeId)
     ]},
     error=>{
         console.log("Data Base connection Faild.")
     }
     )
   }
-
   onClickSubmit()
   {
-    this.departmentService.UpdateDepartmentFromRemote(this.department).subscribe(
+    this.leaveService.UpdateLeavetypeFromRemote(this.leavetype).subscribe(
       data=>{return [
         [swal({
           title: "Updated successfully",
-          text: "Department Updated successfully",
+          text: "Employee Updated successfully",
           icon: "success",
         })],
         console.log("Updated successfully.......")
-      ,window.location.reload()];},
+      ,window.location.reload()]},
       error=>{return[
         [swal({
           title:"Not Updated!",
-          text:"Department not Updated",
+          text:"Employee not Updated",
           icon:"error"})],
         console.log("not Updated!!!!!!!!")
       ];}
     )
   }
 
-  //Department Menu show and hide
-  onSidemenuClickDepartment(){
+
+
+
+   //Department Menu show and hide
+   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");
     if(this.isSideMenuActive) {
       element.className+=" active"; 

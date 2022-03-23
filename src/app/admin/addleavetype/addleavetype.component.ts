@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Leavetype } from 'src/app/class/leavetype';
+import { LeaveService } from 'src/app/services/leave.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-addleavetype',
@@ -8,9 +11,33 @@ import { Router } from '@angular/router';
 })
 export class AddleavetypeComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private leaveService:LeaveService) { }
+  leavetype=new Leavetype()
   isSideMenuActive=true
   ngOnInit(): void {
+  }
+
+  onClickSubmit()
+  {
+    this.leaveService.AddLeavetypeFromRemote(this.leavetype).subscribe(
+      data=>{return [
+        [swal({
+          title: "Inserted successfully",
+          text: "Leave Type Inserted Successfully",
+          buttons:{ok:true},
+          icon: "success",
+        })],
+        console.log("Inserted successfully.......")
+        ,window.location.reload()
+      ];},
+      error=>{return[
+        [swal({
+          title:"Not Inserted!",
+          text:"Leave Type not Inserted",
+          icon:"error"})],
+        console.log("not Inserted!!!!!!!!")
+      ];}
+    ) 
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){
