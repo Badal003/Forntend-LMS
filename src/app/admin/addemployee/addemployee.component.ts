@@ -17,6 +17,7 @@ import swal from 'sweetalert';
 })
 export class AddemployeeComponent implements OnInit {
 
+
   department=new Department()
   designation=new Designation()
   userrole=new Userrole()
@@ -36,6 +37,10 @@ export class AddemployeeComponent implements OnInit {
 
   isSideMenuActive=true
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     this.designationService.DisplaysDesignations(this.designation).subscribe
     (
       data=>{

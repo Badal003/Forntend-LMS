@@ -11,6 +11,10 @@ export class ManageuserComponent implements OnInit {
   constructor(private router:Router) { }
   isSideMenuActive=true
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){

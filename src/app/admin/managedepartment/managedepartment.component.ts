@@ -16,6 +16,10 @@ export class ManagedepartmentComponent implements OnInit {
   constructor(private router:Router,private departmentService:DepartmentService) { }
   isSideMenuActive=true
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     localStorage.removeItem("departId");
     this.departmentService.DisplaysDepartments(this.department).subscribe(
       data=>{

@@ -16,6 +16,10 @@ export class ManageleavetypeComponent implements OnInit {
   leavetype=new Leavetype()
   leavetypes:any
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     localStorage.removeItem("leavetypeId");
     this.leaveService.DisplaysLeavetypes(this.leavetype).subscribe(
       data=>{

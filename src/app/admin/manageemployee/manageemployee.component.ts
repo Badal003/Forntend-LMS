@@ -15,6 +15,10 @@ export class ManageemployeeComponent implements OnInit {
   employee =new Employee()
   employees:any
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     localStorage.removeItem("empId");
     this.employeeService.DisplaysEmployees(this.employee).subscribe(
       data=>{

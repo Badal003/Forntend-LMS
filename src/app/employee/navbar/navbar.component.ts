@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Employeemodule } from 'src/app/class/employeemodule';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +10,16 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router:Router) { }
-  isSideBarActive = true;
+  constructor(private router:Router,private employeeService:EmployeeService) { }
+  employeemodule=new Employeemodule()
+  private isSideBarActive = true;
   ngOnInit(): void {
+    this.employeemodule.setId(Number(localStorage.getItem("employeeId")))
+    this.employeeService.FindEmployeeFromRemote(this.employeemodule).subscribe(
+      data=>{
+        this.employeemodule=data
+      }
+    )
   }
   onSidebarClick(){
     //document.getElementById('').classList.add("active");
@@ -33,6 +42,7 @@ export class NavbarComponent implements OnInit {
   }
   onclickLogOut()
   {
+    localStorage.removeItem("employeeId")
     this.router.navigate(["/login"]);
   }
 }

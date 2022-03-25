@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ApplyleaveComponent } from './applyleave/applyleave.component';
 import { LeavestatusComponent } from './leavestatus/leavestatus.component';
@@ -26,7 +27,7 @@ import { TempComponent } from './temp/temp.component';
 
   ],
   imports: [
-    CommonModule
+    CommonModule,FormsModule
   ],
   exports:[
     DashboardComponent

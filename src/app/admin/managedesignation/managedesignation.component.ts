@@ -18,6 +18,10 @@ export class ManagedesignationComponent implements OnInit {
   designation=new Designation()
   designations:any
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     localStorage.removeItem("designId");
     this.designationService.DisplaysDesignations(this.designation).subscribe(
       data=>{

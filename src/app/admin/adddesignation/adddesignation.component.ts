@@ -15,6 +15,10 @@ export class AdddesignationComponent implements OnInit {
   isSideMenuActive=true
   designation=new Designation()
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
   }
 
   onClickSubmit()

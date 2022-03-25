@@ -15,6 +15,10 @@ export class AddleavetypeComponent implements OnInit {
   leavetype=new Leavetype()
   isSideMenuActive=true
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
   }
 
   onClickSubmit()

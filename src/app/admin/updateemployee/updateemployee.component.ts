@@ -26,6 +26,10 @@ export class UpdateemployeeComponent implements OnInit {
   depart_id:any
   design_id:any
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     this.designationService.DisplaysDesignations(this.designation).subscribe
     (
       data=>{

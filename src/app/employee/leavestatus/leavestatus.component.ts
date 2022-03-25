@@ -10,6 +10,10 @@ export class LeavestatusComponent implements OnInit {
 
   constructor(private router:Router) { }
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
   }
   onclickLeavestatus()
   {

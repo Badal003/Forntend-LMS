@@ -34,6 +34,10 @@ export class AdduserComponent implements OnInit {
    }  
   isSideMenuActive=true
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     this.departmentService.DisplaysDepartments(this.department).subscribe(
       data=>{
         this.departments=data

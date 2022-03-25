@@ -9,8 +9,14 @@ import { Router } from '@angular/router';
 export class UpdatepasswordComponent implements OnInit {
 
   constructor(private router:Router) { }
-
+  oldpassword:any
+  newpassword:any
+  confirmpassword:any
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
   }
   onclickLeavestatus()
   {

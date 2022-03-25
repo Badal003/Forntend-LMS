@@ -15,6 +15,10 @@ export class UpdatedesignationComponent implements OnInit {
   isSideMenuActive=true
   designation=new Designation()
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     this.designation.setId(Number(localStorage.getItem("designId")))
     this.designationService.FindDesignationFromRemote(this.designation).subscribe(
     data=>{[

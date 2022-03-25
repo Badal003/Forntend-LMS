@@ -15,6 +15,10 @@ export class AdddepartmentComponent implements OnInit {
   isSideMenuActive=true
   department=new Department()
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
   }
   onClickSubmit()
   {

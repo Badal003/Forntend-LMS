@@ -39,6 +39,10 @@ export class EmployeeService {
     return this.http.post("http://localhost:8090/updateEmployeeByUserrole",employeemodule)
   } 
 
+  public loginEmployeeFromRemote(employeemodule:Employeemodule):Observable<any>{
+    return this.http.post("http://localhost:8090/login",employeemodule)
+  }
+
   public CountEmployeeFromRemote(employeemodule:Employeemodule):Observable<any>{
     return this.http.post("http://localhost:8090/dashboard",employeemodule);
   }

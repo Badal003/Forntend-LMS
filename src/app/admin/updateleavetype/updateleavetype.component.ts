@@ -15,6 +15,10 @@ export class UpdateleavetypeComponent implements OnInit {
   isSideMenuActive=true
   leavetype=new Leavetype()
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     this.leavetype.setId(Number(localStorage.getItem("leavetypeId")))
     this.leaveService.FindLeavetypeFromRemote(this.leavetype).subscribe(
     data=>{[
@@ -32,7 +36,7 @@ export class UpdateleavetypeComponent implements OnInit {
       data=>{return [
         [swal({
           title: "Updated successfully",
-          text: "Employee Updated successfully",
+          text: "Leave-type Updated successfully",
           icon: "success",
         })],
         console.log("Updated successfully.......")
@@ -40,7 +44,7 @@ export class UpdateleavetypeComponent implements OnInit {
       error=>{return[
         [swal({
           title:"Not Updated!",
-          text:"Employee not Updated",
+          text:"Leave-type not Updated",
           icon:"error"})],
         console.log("not Updated!!!!!!!!")
       ];}

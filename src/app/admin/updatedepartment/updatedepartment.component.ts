@@ -16,6 +16,10 @@ export class UpdatedepartmentComponent implements OnInit {
   isSideMenuActive=true
   department=new Department()
   ngOnInit(): void {
+    if(localStorage.getItem("employeeId")==null)
+    {
+        this.router.navigate(["/login"])
+    }
     this.department.setId(Number(localStorage.getItem("departId")))
     this.departmentService.FindDepartmentFromRemote(this.department).subscribe(
     data=>{[
