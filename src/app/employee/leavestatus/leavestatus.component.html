@@ -85,11 +85,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Casual Leave</td>
-                                            <td>2021-11-02</td>
-                                            <td>2021-11-05</td>
-                                            <td>2021-11-01</td>
+                                        <tr *ngFor="let leave Of leaveapplys">
+                                            <td>{{leave.leavetypeId}}</td>
+                                            <td>{{leave.fromDate}}</td>
+                                            <td>{{leave.toDate}}</td>
+                                            <td>{{leave.applydate}}</td>
                                             <td>waiting for approval</td>
                                             <td>
                                                 <span class="badge bg-info">Pending</span>
@@ -97,10 +97,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="dataTable-bottom">
-                                <div class="dataTable-info">Showing 1 to 1 of 1 entries</div>
-                                <ul class="pagination pagination-primary float-end dataTable-pagination"></ul>
                             </div>
                         </div>
                     </div>

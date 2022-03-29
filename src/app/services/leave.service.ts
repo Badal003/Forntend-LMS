@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Applyleave } from '../class/applyleave';
 import { Leavetype } from '../class/leavetype';
 
 @Injectable({
@@ -34,4 +35,13 @@ export class LeaveService {
   public CountLeavetypeFromRemote(leavetype:Leavetype):Observable<any>{
     return this.http.post("http://localhost:8090/dashboard",leavetype);
   }
+
+  public ApplyLeaveFromremote(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/addleave",applyleave);
+  }
+
+  public EmployeeLeaveFromRemote(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/leaveofemployee",applyleave);
+  }
+
 }
