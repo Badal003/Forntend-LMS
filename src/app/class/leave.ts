@@ -7,6 +7,15 @@ export class Leave {
     toDate:string| undefined; 
     applydate: string| undefined; 
     status: number| undefined;
-    leavetype:Leavetype | undefined;
+    leaveType:Leavetype | undefined;
     employee:Employee| undefined;
+
+    setleavetype(leavetype:Leavetype)
+    {
+        this.leaveType=leavetype
+    }
+    getleavetype()
+    {
+        return this.leaveType
+    }
 }

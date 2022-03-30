@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Applyleave } from 'src/app/class/applyleave';
 import { Leave } from 'src/app/class/leave';
 import { Leavetype } from 'src/app/class/leavetype';
+import { Templeave } from 'src/app/class/templeave';
 import { LeaveService } from 'src/app/services/leave.service';
 
 @Component({
@@ -14,23 +15,20 @@ export class LeavestatusComponent implements OnInit {
 
   constructor(private router:Router,private leaveService:LeaveService) { }
   leaveapply=new Applyleave()
-  leave=new Leave()
-  leavetype=new Leavetype()
-  leavetypes:any
-  leaveapplys:any
+  templeaves:any
+  tempLeave=new Templeave()
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
         this.router.navigate(["/login"])
     }
     this.leaveapply.employeeId=Number(localStorage.getItem("employeeId"))
-    console.log(this.leaveapply)
     this.leaveService.EmployeeLeaveFromRemote(this.leaveapply).subscribe(
       data=>{[
-        this.leaveapplys=data,
-        console.log(this.leaveapplys)
-      ]}
+        this.templeaves=data,
+        ]}
     )
+    
   }
   onclickLeavestatus()
   {

@@ -7,4 +7,8 @@ export class Leavetype {
     {
         this.leavetypeId=id
     }
+    getleaveName()
+    {
+        return this.getleaveName
+    }
 }

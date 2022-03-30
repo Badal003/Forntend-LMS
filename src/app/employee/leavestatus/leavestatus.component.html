@@ -85,14 +85,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let leave Of leaveapplys">
-                                            <td>{{leave.leavetypeId}}</td>
-                                            <td>{{leave.fromDate}}</td>
-                                            <td>{{leave.toDate}}</td>
-                                            <td>{{leave.applydate}}</td>
-                                            <td>waiting for approval</td>
+                                        <tr *ngFor="let templeave Of templeaves">
                                             <td>
+                                                {{templeave.leaveName}}
+                                            </td>
+                                            <td>{{templeave.fromDate}}</td>
+                                            <td>{{templeave.toDate}}</td>
+                                            <td>{{templeave.applydate}}</td>
+                                            <td *ngIf="templeave.status==0">waiting for approval</td>
+                                            <td *ngIf="templeave.status==1">Approved</td>
+                                            <td *ngIf="templeave.status==2">Not Approved</td>
+
+                                            <td *ngIf="templeave.status==0">
                                                 <span class="badge bg-info">Pending</span>
+                                            </td>
+                                            <td *ngIf="templeave.status==1">
+                                                <span class="badge bg-success">Approved</span>
+                                            </td>
+                                            <td *ngIf="templeave.status==2">
+                                                <span class="badge bg-danger">Not Approved</span>
                                             </td>
                                         </tr>
                                     </tbody>

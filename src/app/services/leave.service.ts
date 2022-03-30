@@ -1,3 +1,4 @@
+import { Leave } from 'src/app/class/leave';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
