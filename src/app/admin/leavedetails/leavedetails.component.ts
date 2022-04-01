@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Applyleave } from 'src/app/class/applyleave';
+import { Templeave } from 'src/app/class/templeave';
+import { LeaveService } from 'src/app/services/leave.service';
 
 @Component({
   selector: 'app-leavedetails',
@@ -8,13 +11,23 @@ import { Router } from '@angular/router';
 })
 export class LeavedetailsComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private leaveService:LeaveService) { }
+  templeave=new Templeave()
+  applyleave=new Applyleave()
   isSideMenuActive=true
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
         this.router.navigate(["/login"])
     }
+    this.applyleave.leaveapplyId=Number(localStorage.getItem("leaveId"))
+    console.log("leave id",Number(localStorage.getItem("leaveId")))
+    this.leaveService.FindLeaveByIdFromRemote(this.applyleave).subscribe(
+      data=>{
+        console.log(data)
+        this.templeave=data
+      }
+    )
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Applyleave } from '../class/applyleave';
 import { Leavetype } from '../class/leavetype';
+import { Employee } from '../class/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -45,4 +46,19 @@ export class LeaveService {
     return this.http.post("http://localhost:8090/leaveofemployee",applyleave);
   }
 
+  public FindEmployeeLeaveByDepartment(employee:Employee):Observable<any>{
+    return this.http.post("http://localhost:8090/findemployeeleavebydepartment",employee);
+  }
+
+  public FindLeaveByDepartment(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/findleavebydepartment",applyleave)
+  }
+
+  public CountLeave(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/countpendingleave",applyleave)
+  }
+
+  public FindLeaveByIdFromRemote(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/findleavebyid",applyleave);
+  }
 }

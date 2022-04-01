@@ -165,6 +165,11 @@ const routes: Routes = [
     component:UpdateleavetypeComponent,
     pathMatch:'full'
   },
+  {
+    path:'leavedetail',
+    component:LeavedetailsComponent,
+    pathMatch:'full'
+  },
 ];
 
 @NgModule({

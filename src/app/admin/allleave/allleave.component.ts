@@ -1,5 +1,8 @@
+import { Templeave } from './../../class/templeave';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LeaveService } from 'src/app/services/leave.service';
+import { Employee } from 'src/app/class/employee';
 
 @Component({
   selector: 'app-allleave',
@@ -8,13 +11,24 @@ import { Router } from '@angular/router';
 })
 export class AllleaveComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private leaveService:LeaveService) { }
+  templeave=new Templeave()
+  employee=new Employee()
+  templeaves:any
   isSideMenuActive=true
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
         this.router.navigate(["/login"])
     }
+    this.employee.setId(Number(localStorage.getItem("employeeId")))
+    console.log(this.employee.employeeId)
+    this.leaveService.FindEmployeeLeaveByDepartment(this.employee).subscribe(
+      data=>{
+        this.templeaves=data,
+        console.log(data)
+      }
+    )
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){
