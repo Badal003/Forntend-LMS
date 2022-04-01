@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Applyleave } from 'src/app/class/applyleave';
 import { Templeave } from 'src/app/class/templeave';
 import { LeaveService } from 'src/app/services/leave.service';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-leavedetails',
@@ -29,6 +30,59 @@ export class LeavedetailsComponent implements OnInit {
       }
     )
   }
+
+  onClickLeave(status:number,id:number|undefined)
+  {
+    if(status==1)
+    {
+        this.applyleave.status=1
+        this.applyleave.leaveapplyId=id
+        this.leaveService.UpdateLeaveFromremote(this.applyleave).subscribe
+        (
+          data=>{return [
+            [swal({
+              title: "Approve",
+              text: "Leave Approve successfully",
+              icon: "success",
+            })],
+            console.log("Approve successfully.......")
+          ,window.location.reload()];},
+          error=>{return[
+            [swal({
+              title:"Error!",
+              text:"Leave Status not updated",
+              icon:"error"})],
+            console.log("not Updated!!!!!!!!")
+          ];}
+        )
+    }
+    else
+    {
+        this.applyleave.status=2
+        this.applyleave.leaveapplyId=id
+        this.leaveService.UpdateLeaveFromremote(this.applyleave).subscribe
+        (
+          data=>{return [
+            [swal({
+              title: "Not Approve",
+              text: "Leave not Approve",
+              icon: "success",
+            })],
+            console.log("Approve successfully.......")
+          ,window.location.reload()];},
+          error=>{return[
+            [swal({
+              title:"Error",
+              text:"Leave status not updated",
+              icon:"error"})],
+            console.log("not Updated!!!!!!!!")
+          ];}
+        )
+    }
+  }
+
+
+
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");

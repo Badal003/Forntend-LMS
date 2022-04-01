@@ -151,30 +151,54 @@
                                                                     <b>Posting Date:</b>   {{templeave.applydate}}
                                                                 </td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr *ngIf="templeave.status==0">
                                                                 <td>
                                                                     <b>Leave Status:</b>    pending
                                                                 </td>
-                                                                <td>
-                                                                </td>
-                                                                <td>
-                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
-                                                            <tr>
+                                                            <tr *ngIf="templeave.status==1">
+                                                               <td>
+                                                                   <b>Leave Status:</b>    Approved
+                                                               </td>
+                                                               <td></td>
+                                                               <td></td>
+                                                           </tr>
+                                                           <tr *ngIf="templeave.status==2">
+                                                               <td>
+                                                                  <b>Leave Status:</b>    Not Approved
+                                                               </td>
+                                                               <td></td>
+                                                               <td></td>
+                                                            </tr>
+                                                            <tr *ngIf="templeave.status==0">
                                                                 <td>
                                                                     <b>Admin Remark:</b>    waiting for approval
                                                                 </td>
-                                                                <td>
-                                                                </td>
-                                                                <td>
-                                                                </td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
+                                                            <tr *ngIf="templeave.status==1">
+                                                               <td>
+                                                                   <b>Admin Remark:</b>    Approved
+                                                               </td>
+                                                               <td></td>
+                                                               <td></td>
+                                                           </tr>
+                                                           <tr *ngIf="templeave.status==2">
+                                                            <td>
+                                                                <b>Admin Remark:</b>    Not Approved
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="col-12 d-flex justify-content-end">
-                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Approve</button>
-                                                    <button type="submit" class="btn btn-primary me-1 mb-1">Not Approve</button>
+                                                <div class="col-12 d-flex justify-content-end" *ngIf="templeave.status==0">
+                                                    <button type="submit" class="btn btn-primary me-1 mb-1"  (click)="onClickLeave(1,templeave.leaveapplyId)">Approve</button>
+                                                    <button type="submit" class="btn btn-primary me-1 mb-1" (click)="onClickLeave(2,templeave.leaveapplyId)">Not Approve</button>
                                                 </div>
                                             </div>
                                         </div>

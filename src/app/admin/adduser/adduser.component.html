@@ -148,7 +148,7 @@
                                              <div class="form-group">
                                                 <label for="country-floating">Department</label>
                                                 <fieldset class="form-group">
-                                                   <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.departmentId" [ngModelOptions]="{standalone: true}" (change)="onChange(employeemodule.departmentId)" >
+                                                   <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.departmentId" [ngModelOptions]="{standalone: true}" (change)="onChange(employeemodule.departmentId)" required >
                                                       <option [value]="department.departmentId" *ngFor="let department of departments">{{department.departmentShortName}}</option>
                                                    </select>
                                                 </fieldset>
@@ -158,7 +158,7 @@
                                                 <div class="form-group">
                                                     <label for="country-floating">Employee</label>
                                                     <fieldset class="form-group">
-                                                      <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.id" [ngModelOptions]="{standalone: true}" (change)="onChange(employeemodule.departmentId)" >
+                                                      <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.id" [ngModelOptions]="{standalone: true}" (change)="onChange(employeemodule.departmentId)" required >
                                                          <option [value]="employee.employeeId" *ngFor="let employee of employees">{{employee.firstName+" "+employee.lastName}}</option>
                                                       </select>
                                                     </fieldset>
@@ -169,7 +169,7 @@
                                                     <label for="first-name-icon">User Category</label>
                                                     <div class="position-relative">
                                                         <fieldset class="form-group">
-                                                         <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.userroleId" [ngModelOptions]="{standalone: true}">
+                                                         <select class="form-select" id="basicSelect" [(ngModel)]="employeemodule.userroleId" [ngModelOptions]="{standalone: true}" required>
                                                             <option [ngValue]="userrole.userroleId" *ngFor="let userrole of userroles">{{userrole.userroleName}}</option>
                                                          </select>
                                                         </fieldset>

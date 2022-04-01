@@ -30,6 +30,12 @@ export class AllleaveComponent implements OnInit {
       }
     )
   }
+
+  onClickLeave(id:number)
+  {
+    localStorage.setItem("leaveId",id.toString())
+    this.router.navigate(["/leavedetail"])
+  }
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");

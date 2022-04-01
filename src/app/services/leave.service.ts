@@ -42,6 +42,10 @@ export class LeaveService {
     return this.http.post("http://localhost:8090/addleave",applyleave);
   }
 
+  public UpdateLeaveFromremote(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/applyleave",applyleave);
+  }
+
   public EmployeeLeaveFromRemote(applyleave:Applyleave):Observable<any>{
     return this.http.post("http://localhost:8090/leaveofemployee",applyleave);
   }

@@ -37,9 +37,12 @@ export class NavbarComponent implements OnInit {
         this.count=data
       }
     )
+    console.log("New",this.applyleave.employeeId)
+    console.log("new",this.applyleave.status)
     this.leaveService.FindLeaveByDepartment(this.applyleave).subscribe(
       data=>{
         this.templeaves=data
+        console.log(data)
       }
     )
   }

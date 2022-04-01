@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Applyleave } from 'src/app/class/applyleave';
+import { Templeave } from 'src/app/class/templeave';
+import { LeaveService } from 'src/app/services/leave.service';
 
 @Component({
   selector: 'app-notapproveleave',
@@ -8,14 +11,30 @@ import { Router } from '@angular/router';
 })
 export class NotapproveleaveComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private leaveService:LeaveService) { }
+  templeave=new Templeave()
+  applyleave=new Applyleave()
+  templeaves:any
   isSideMenuActive=true
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
         this.router.navigate(["/login"])
     }
+    this.applyleave.employeeId=(Number(localStorage.getItem("employeeId")))
+    this.applyleave.status=2
+    this.leaveService. FindLeaveByDepartment(this.applyleave).subscribe(
+      data => {this.templeaves=data
+      }
+      )
   }
+
+  onClickLeave(id:number)
+  {
+    localStorage.setItem("leaveId",id.toString())
+    this.router.navigate(["/leavedetail"])
+  }
+
   //Department Menu show and hide
   onSidemenuClickDepartment(){
     var element:any = document.getElementById("sidemenuDepartment");
