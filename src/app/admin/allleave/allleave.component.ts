@@ -1,4 +1,4 @@
-import { Templeave } from './../../class/templeave';
+import { Templeave } from '../../class/templeave';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LeaveService } from 'src/app/services/leave.service';

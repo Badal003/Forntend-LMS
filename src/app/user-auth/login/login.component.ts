@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
         }
         else
         {
-
+          localStorage.setItem("employeeId",data.id)
+          this.router.navigate(["/managermain"])
         }  
       },
       error=>{return[

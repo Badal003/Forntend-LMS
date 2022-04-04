@@ -6,16 +6,13 @@ import { AddemployeeComponent } from './admin/addemployee/addemployee.component'
 import { AddleavetypeComponent } from './admin/addleavetype/addleavetype.component';
 import { AdduserComponent } from './admin/adduser/adduser.component';
 import { AdminmainComponent } from './admin/adminmain/adminmain.component';
-import { AllleaveComponent } from './admin/allleave/allleave.component';
-import { ApproveleaveComponent } from './admin/approveleave/approveleave.component';
-import { LeavedetailsComponent } from './admin/leavedetails/leavedetails.component';
+
 import { ManagedepartmentComponent } from './admin/managedepartment/managedepartment.component';
 import { ManagedesignationComponent } from './admin/managedesignation/managedesignation.component';
 import { ManageemployeeComponent } from './admin/manageemployee/manageemployee.component';
 import { ManageleavetypeComponent } from './admin/manageleavetype/manageleavetype.component';
 import { ManageuserComponent } from './admin/manageuser/manageuser.component';
-import { NotapproveleaveComponent } from './admin/notapproveleave/notapproveleave.component';
-import { PendingleaveComponent } from './admin/pendingleave/pendingleave.component';
+
 import { ReportComponent } from './admin/report/report.component';
 import { UpdatedepartmentComponent } from './admin/updatedepartment/updatedepartment.component';
 import { UpdatedesignationComponent } from './admin/updatedesignation/updatedesignation.component';
@@ -26,7 +23,14 @@ import { DashboardComponent } from './employee/dashboard/dashboard.component';
 import { LeavestatusComponent } from './employee/leavestatus/leavestatus.component';
 import { UpdatepasswordComponent } from './employee/updatepassword/updatepassword.component';
 import { UpdateprofileComponent } from './employee/updateprofile/updateprofile.component';
+import { ManagerdashboardComponent } from './manager/managerdashboard/managerdashboard.component';
 import { LoginComponent } from './user-auth/login/login.component';
+
+import { AllleavesComponent } from './manager/allleaves/allleaves.component';
+import { ApproveleaveComponent } from './manager/approveleave/approveleave.component';
+import { LeavedetailsComponent } from './manager/leavedetails/leavedetails.component';
+import { NotapproveleaveComponent } from './manager/notapproveleave/notapproveleave.component';
+import { PendingleaveComponent } from './manager/pendingleave/pendingleave.component';
 
 
 const routes: Routes = [
@@ -92,7 +96,7 @@ const routes: Routes = [
   },
   { 
     path:'allleave',
-    component:AllleaveComponent,
+    component:AllleavesComponent,
     pathMatch:'full',
   },
   { 
@@ -170,6 +174,12 @@ const routes: Routes = [
     component:LeavedetailsComponent,
     pathMatch:'full'
   },
+  {
+    path:'managermain',
+    component:ManagerdashboardComponent,
+    pathMatch:'full'
+  },
+
 ];
 
 @NgModule({

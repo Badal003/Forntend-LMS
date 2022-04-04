@@ -28,23 +28,23 @@ export class NavbarComponent implements OnInit {
         this.employeemodule=data
       }
     )
-    this.applyleave.status=0
-    this.applyleave.employeeId=Number(localStorage.getItem("employeeId"))
-    console.log(this.applyleave.employeeId)
-    console.log(this.applyleave.status)
-    this.leaveService.CountLeave(this.applyleave).subscribe(
-      data=>{
-        this.count=data
-      }
-    )
-    console.log("New",this.applyleave.employeeId)
-    console.log("new",this.applyleave.status)
-    this.leaveService.FindLeaveByDepartment(this.applyleave).subscribe(
-      data=>{
-        this.templeaves=data
-        console.log(data)
-      }
-    )
+    // this.applyleave.status=0
+    // this.applyleave.employeeId=Number(localStorage.getItem("employeeId"))
+    // console.log(this.applyleave.employeeId)
+    // console.log(this.applyleave.status)
+    // this.leaveService.CountLeave(this.applyleave).subscribe(
+    //   data=>{
+    //     this.count=data
+    //   }
+    // )
+    // console.log("New",this.applyleave.employeeId)
+    // console.log("new",this.applyleave.status)
+    // this.leaveService.FindLeaveByDepartment(this.applyleave).subscribe(
+    //   data=>{
+    //     this.templeaves=data
+    //     console.log(data)
+    //   }
+    // )
   }
   onClickLeave(id:number)
   {

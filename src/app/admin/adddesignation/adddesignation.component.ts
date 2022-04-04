@@ -83,16 +83,6 @@ export class AdddesignationComponent implements OnInit {
     }
     this.isSideMenuActive = !this.isSideMenuActive;
   }
-  //Leave Manage Menu show and hide
-  onSidemenuClickLeaveManage(){
-    var element:any = document.getElementById("sidemenuLeaveManage");
-    if(this.isSideMenuActive) {
-      element.className+=" active"; 
-    } else {
-      element.classList.toggle('active');
-    }
-    this.isSideMenuActive = !this.isSideMenuActive;
-  }
   //User Menu show and hide
   onSidemenuClickUser(){
     var element:any = document.getElementById("sidemenuUser");
@@ -148,26 +138,6 @@ export class AdddesignationComponent implements OnInit {
   onOpenManageLeaveType()
   { 
     this.router.navigate(["/manageleavetype"]);
-  }
-  //Open All Leave form
-  onOpenAllLeave()
-  { 
-    this.router.navigate(["/allleave"]);
-  }
-  //Open Pending Leave form
-  onOpenPendingLeave()
-  { 
-    this.router.navigate(["/pendingleave"]);
-  }
-  //Open Approve Leave form
-  onOpenApproveLeave()
-  { 
-    this.router.navigate(["/approveleave"]);
-  }
-  //Open Not Approve Leave form
-  onOpenNotApproveLeave()
-  { 
-    this.router.navigate(["/notapproveleave"]);
   }
   //Open Add User form
   onOpenAddUser()

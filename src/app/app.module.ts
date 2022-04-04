@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import{EmployeeModule} from './employee/employee.module'
 import { AdminModule } from './admin/admin.module';
 import { UserAuthModule } from './user-auth/user-auth.module';
+import { ManagerModule } from './manager/manager.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { UserAuthModule } from './user-auth/user-auth.module';
     AdminModule,
     UserAuthModule,
     ReactiveFormsModule,
+    ManagerModule,
     FormsModule
   ],
   providers: [],
