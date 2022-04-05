@@ -50,4 +50,8 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+  onClickFroget()
+  {
+    this.router.navigate(["/forgetpassword"])
+  }
 }

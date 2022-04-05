@@ -31,6 +31,7 @@ import { ApproveleaveComponent } from './manager/approveleave/approveleave.compo
 import { LeavedetailsComponent } from './manager/leavedetails/leavedetails.component';
 import { NotapproveleaveComponent } from './manager/notapproveleave/notapproveleave.component';
 import { PendingleaveComponent } from './manager/pendingleave/pendingleave.component';
+import { ForgetpasswordComponent } from './user-auth/forgetpassword/forgetpassword.component';
 
 
 const routes: Routes = [
@@ -177,6 +178,11 @@ const routes: Routes = [
   {
     path:'managermain',
     component:ManagerdashboardComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'forgetpassword',
+    component:ForgetpasswordComponent,
     pathMatch:'full'
   },
 
