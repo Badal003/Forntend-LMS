@@ -20,6 +20,12 @@ export class ApplyleaveComponent implements OnInit {
   leavetypes:any
   today = new Date()
   latest_date =this.datepipe.transform(this.today, 'yyyy-MM-dd');
+  fromdate:any
+  todate:any
+  date1: any
+  date2: any
+  Time:any
+  Days:any
   ngOnInit(): void {
     
     if(localStorage.getItem("employeeId")==null)
@@ -43,6 +49,15 @@ export class ApplyleaveComponent implements OnInit {
         this.lid=data.leavetypeId
       }
     )
+  }
+  onChangeDate(todate:any)
+  {
+    this.fromdate=this.leaveapply.fromDate;
+    this.todate=this.leaveapply.toDate
+    this.date1 = new Date(this.fromdate); 
+	  this.date2 = new Date(this.todate); 
+    this.Time = this.date2.getTime() - this.date1.getTime(); 
+    this.Days = this.Time / (1000 * 3600 * 24);
   }
 
   onclickSubmit()
