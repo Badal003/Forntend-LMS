@@ -9,6 +9,9 @@ export class Leave {
     status: number| undefined;
     leaveType:Leavetype | undefined;
     employee:Employee| undefined;
+    manager:Employee| undefined;
+    remarkdate: string| undefined;
+    remark: string| undefined;
 
     setleavetype(leavetype:Leavetype)
     {

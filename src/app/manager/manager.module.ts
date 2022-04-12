@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ManagerdashboardComponent } from './managerdashboard/managerdashboard.component';
-
+import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AllleavesComponent } from './allleaves/allleaves.component';
 import { NotapproveleaveComponent } from './notapproveleave/notapproveleave.component';
@@ -26,7 +26,8 @@ import { LeavedetailsComponent } from './leavedetails/leavedetails.component';
     
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class ManagerModule { }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Applyleave } from 'src/app/class/applyleave';
 import { Templeave } from 'src/app/class/templeave';
 import { LeaveService } from 'src/app/services/leave.service';
+import { DatePipe } from '@angular/common';
 import swal from 'sweetalert';
 
 @Component({
@@ -16,6 +17,9 @@ export class LeavedetailsComponent implements OnInit {
   templeave=new Templeave()
   applyleave=new Applyleave()
   isSideMenuActive=true
+  remarks:any
+  
+  
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
@@ -36,6 +40,10 @@ export class LeavedetailsComponent implements OnInit {
     if(status==1)
     {
         this.applyleave.status=1
+        this.remarks=this.templeave.remark;
+        this.applyleave.remark=this.remarks;
+        this.applyleave.managerId=Number(localStorage.getItem("employeeId"))
+        console.log("Manager id",Number(localStorage.getItem("leaveId")))
         this.applyleave.leaveapplyId=id
         this.leaveService.UpdateLeaveFromremote(this.applyleave).subscribe
         (
@@ -59,6 +67,10 @@ export class LeavedetailsComponent implements OnInit {
     else
     {
         this.applyleave.status=2
+        this.remarks=this.templeave.remark;
+        this.applyleave.remark=this.remarks;
+        this.applyleave.managerId=Number(localStorage.getItem("employeeId"));
+        console.log("manager id",Number(localStorage.getItem("leaveId")))
         this.applyleave.leaveapplyId=id
         this.leaveService.UpdateLeaveFromremote(this.applyleave).subscribe
         (

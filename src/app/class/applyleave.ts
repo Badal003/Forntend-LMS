@@ -7,4 +7,7 @@ export class Applyleave {
     status: number| undefined;
     leavetypeId:number| undefined;
     employeeId:number| undefined;
+    managerId:number| undefined;
+    remarkdate: string| undefined;
+    remark:string| undefined;
 }
