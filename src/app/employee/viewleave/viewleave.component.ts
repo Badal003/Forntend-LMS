@@ -1,39 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Applyleave } from 'src/app/class/applyleave';
-import { Leave } from 'src/app/class/leave';
 import { Leavetype } from 'src/app/class/leavetype';
 import { Templeave } from 'src/app/class/templeave';
 import { LeaveService } from 'src/app/services/leave.service';
 
 @Component({
-  selector: 'app-leavestatus',
-  templateUrl: './leavestatus.component.html',
-  styleUrls: ['./leavestatus.component.css']
+  selector: 'app-viewleave',
+  templateUrl: './viewleave.component.html',
+  styleUrls: ['./viewleave.component.css']
 })
-export class LeavestatusComponent implements OnInit {
+export class ViewleaveComponent implements OnInit {
 
   constructor(private router:Router,private leaveService:LeaveService) { }
-  leaveapply=new Applyleave()
-  templeaves:any
-  tempLeave=new Templeave()
+  leavetype=new Leavetype()
+  applyleave=new Applyleave()
+  templeave=new Templeave()
+  leavetypes:any
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
         this.router.navigate(["/login"])
     }
-    this.leaveapply.employeeId=Number(localStorage.getItem("employeeId"))
-    this.leaveService.EmployeeLeaveFromRemote(this.leaveapply).subscribe(
-      data=>{[
-        this.templeaves=data,
-        ]}
-    ) 
+    this.applyleave.leaveapplyId=Number(localStorage.getItem("leaveId"))
+    console.log("leave id",Number(localStorage.getItem("leaveId")))
+    this.leaveService.FindLeaveByIdFromRemote(this.applyleave).subscribe(
+      data=>{
+        console.log(data)
+        this.templeave=data
+      }
+    )
+    
   }
-  onClickLeave(id:number)
-  {
-    localStorage.setItem("leaveId",id.toString())
-    this.router.navigate(["/viewleave"])
-  }
+  
   onclickLeavestatus()
   {
       this.router.navigate(["/leavestatus"]);

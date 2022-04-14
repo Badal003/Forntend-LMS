@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   constructor(private router:Router) { }
-
+  myMap = new Map<string, number>();
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {

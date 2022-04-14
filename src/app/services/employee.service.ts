@@ -47,4 +47,8 @@ export class EmployeeService {
     return this.http.post("http://localhost:8090/dashboard",employeemodule);
   }
 
+  public UpdatePasswordFromRemote(employeemodule:Employeemodule):Observable<any>{
+    return this.http.post("http://localhost:8090/updatepassword",employeemodule);
+  }
+
 }

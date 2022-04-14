@@ -10,6 +10,7 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
 import { EmployeemainComponent } from './employeemain/employeemain.component';
 import { UpdatepasswordComponent } from './updatepassword/updatepassword.component';
 import { TempComponent } from './temp/temp.component';
+import { ViewleaveComponent } from './viewleave/viewleave.component';
 
 
 
@@ -24,6 +25,7 @@ import { TempComponent } from './temp/temp.component';
     EmployeemainComponent,
     UpdatepasswordComponent,
     TempComponent,
+    ViewleaveComponent,
 
   ],
   imports: [

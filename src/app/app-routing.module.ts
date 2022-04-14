@@ -32,6 +32,7 @@ import { LeavedetailsComponent } from './manager/leavedetails/leavedetails.compo
 import { NotapproveleaveComponent } from './manager/notapproveleave/notapproveleave.component';
 import { PendingleaveComponent } from './manager/pendingleave/pendingleave.component';
 import { ForgetpasswordComponent } from './user-auth/forgetpassword/forgetpassword.component';
+import { ViewleaveComponent } from './employee/viewleave/viewleave.component';
 
 
 const routes: Routes = [
@@ -185,7 +186,11 @@ const routes: Routes = [
     component:ForgetpasswordComponent,
     pathMatch:'full'
   },
-
+  {
+    path:'viewleave',
+    component:ViewleaveComponent,
+    pathMatch:'full'
+  },
 ];
 
 @NgModule({
