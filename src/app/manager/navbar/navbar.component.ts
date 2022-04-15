@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
     this.applyleave.employeeId=Number(localStorage.getItem("employeeId"))
     console.log(this.applyleave.employeeId)
     console.log(this.applyleave.status)
-    this.leaveService.CountLeave(this.applyleave).subscribe(
+    this.leaveService.CountPendingLeave(this.applyleave).subscribe(
       data=>{
         this.count=data
       }
@@ -46,6 +46,16 @@ export class NavbarComponent implements OnInit {
       }
     )
   }
+
+  onclickUpdateProfile()
+  {
+    this.router.navigate(["/updateprofile"]);
+  }
+  onclickUpdatePassword()
+  {
+    this.router.navigate(["/updatepassword"]);
+  }
+  
   onClickLeave(id:number)
   {
     localStorage.setItem("leaveId",id.toString())

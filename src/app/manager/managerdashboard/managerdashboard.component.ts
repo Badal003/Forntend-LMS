@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Applyleave } from 'src/app/class/applyleave';
+import { LeaveService } from 'src/app/services/leave.service';
 
 @Component({
   selector: 'app-managerdashboard',
@@ -8,13 +10,29 @@ import { Router } from '@angular/router';
 })
 export class ManagerdashboardComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private leaveService:LeaveService) { }
   isSideMenuActive=true
+  applyleave=new Applyleave()
+  totalleave:any
+  approved: any
+  notapproved:any
+  pending: any
+  totalemployee:any
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
         this.router.navigate(["/login"])
     }
+    this.applyleave.managerId=Number(localStorage.getItem("employeeId"))
+    this.leaveService.CountLeaveByManager(this.applyleave).subscribe(
+      data => {
+        this.totalleave=data.totalleave
+        this.approved=data.approved
+        this.notapproved=data.notapproved
+        this.pending=data.pending
+        this.totalemployee=data.totalemployee
+      }
+    )
   }
   //Leave Manage Menu show and hide
   onSidemenuClickLeaveManage(){
@@ -51,7 +69,7 @@ export class ManagerdashboardComponent implements OnInit {
   onOpenNotApproveLeave()
   { 
     this.router.navigate(["/notapproveleave"]);
-  }
+  }   
   //Open Report form
   onOpenReport()
   { 

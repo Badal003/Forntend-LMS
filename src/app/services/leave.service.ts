@@ -58,11 +58,20 @@ export class LeaveService {
     return this.http.post("http://localhost:8090/findleavebydepartment",applyleave)
   }
 
-  public CountLeave(applyleave:Applyleave):Observable<any>{
+  public CountPendingLeave(applyleave:Applyleave):Observable<any>{
     return this.http.post("http://localhost:8090/countpendingleave",applyleave)
   }
 
   public FindLeaveByIdFromRemote(applyleave:Applyleave):Observable<any>{
     return this.http.post("http://localhost:8090/findleavebyid",applyleave);
   }
+
+  public CountLeaveByEmployee(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/countleave",applyleave)
+  }
+
+  public CountLeaveByManager(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/countmanagerleave",applyleave)
+  }
+
 }

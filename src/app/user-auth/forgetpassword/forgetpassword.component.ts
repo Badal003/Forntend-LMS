@@ -18,30 +18,19 @@ export class ForgetpasswordComponent implements OnInit {
   onclickSubmit()
   {
     console.log(this.employeemodule.emailId)
-    this.employeeService.loginEmployeeFromRemote(this.employeemodule).subscribe(
+    this.employeeService.forgetpasswordFromRemote(this.employeemodule).subscribe(
       data=>{
-        console.log(data)
-        
-        if(data.userroleId==1)
-        {
-          localStorage.setItem("employeeId",data.id)
-          this.router.navigate(["/admin"])
-        }
-        else if(data.userroleId==2)
-        {
-          localStorage.setItem("employeeId",data.id)
-          this.router.navigate(["/employee"])
-        }
-        else
-        {
-          localStorage.setItem("employeeId",data.id)
-          this.router.navigate(["/managermain"])
-        }  
+        [
+          swal({
+            title:"Email Send",
+            text:"New Password send successfully!!",
+            icon:"success"})
+        ]
       },
       error=>{return[
         [swal({
-          title:"Invalid Credentials!",
-          text:"Invalid username and password",
+          title:"Invalid Email Id!",
+          text:"EmilId not Register",
           icon:"error"})]
         
       ];
