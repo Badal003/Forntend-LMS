@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -29,6 +29,11 @@ import { UpdateleavetypeComponent } from './updateleavetype/updateleavetype.comp
 
 
 @NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    HttpClientModule
+  ],
   declarations: [
     DashboardComponent,
     NavbarComponent,
@@ -52,12 +57,7 @@ import { UpdateleavetypeComponent } from './updateleavetype/updateleavetype.comp
     UpdatedepartmentComponent,
     UpdatedesignationComponent,
     UpdateemployeeComponent,
-    UpdateleavetypeComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule
+    UpdateleavetypeComponent,ReportComponent
   ]
 })
 export class AdminModule { }

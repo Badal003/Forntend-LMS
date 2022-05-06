@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -8,6 +8,7 @@ import{EmployeeModule} from './employee/employee.module'
 import { AdminModule } from './admin/admin.module';
 import { UserAuthModule } from './user-auth/user-auth.module';
 import { ManagerModule } from './manager/manager.module';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -22,9 +23,13 @@ import { ManagerModule } from './manager/manager.module';
     UserAuthModule,
     ReactiveFormsModule,
     ManagerModule,
-    FormsModule
+    FormsModule,
+    NgChartsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class AppModule { }

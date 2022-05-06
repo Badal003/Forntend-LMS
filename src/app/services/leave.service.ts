@@ -74,4 +74,7 @@ export class LeaveService {
     return this.http.post("http://localhost:8090/countmanagerleave",applyleave)
   }
 
+  public CountByAdmin(applyleave:Applyleave):Observable<any>{
+    return this.http.post("http://localhost:8090/countadmin",applyleave)
+  }
 }

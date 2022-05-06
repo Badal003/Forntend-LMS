@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Applyleave } from 'src/app/class/applyleave';
+import { LeaveService } from 'src/app/services/leave.service';
 
 @Component({
   selector: 'app-adminmain',
@@ -8,13 +10,28 @@ import { Router } from '@angular/router';
 })
 export class AdminmainComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private leaveService:LeaveService) { }
   isSideMenuActive=true
+  applyleave=new Applyleave()
+  department:any
+  leavetype:any
+  manager:any
+  employee:any
+  designation:any
   ngOnInit(): void {
     if(localStorage.getItem("employeeId")==null)
     {
         this.router.navigate(["/login"])
     }
+    this.leaveService.CountByAdmin(this.applyleave).subscribe(
+      data => {
+        this.department=data.department
+        this.leavetype=data.leavetype
+        this.manager=data.manager
+        this.employee=data.employee
+        this.designation=data.designation
+      }
+    )
   }
   //Department Menu show and hide
   onSidemenuClickDepartment(){
